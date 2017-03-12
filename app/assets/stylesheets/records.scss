@@ -1,0 +1,24 @@
+// Place all the styles related to the records controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$background: #000;
+$font-stack: Helvetica, sans-serif;
+$text: #fff;
+$links: gray;
+$drop-down-text: #000;
+
+body {
+	font: 100% $font-stack;
+	background-color: $background;
+	color: $text;
+	}
+
+img {
+	padding-bottom: 20px;
+	}
+
+a {
+	color: $links;
+	text-decoration: none;
+}
