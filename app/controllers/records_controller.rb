@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   end
 
   def new
-    @records = Record.all
+    # @records = Record.all
     @test = "test"
     @incoming_data = RecordsHelper.get_records 
     
@@ -40,8 +40,8 @@ class RecordsController < ApplicationController
   def show
   end
 
-  private
-      def incoming_data
-      params.require(:file).permit(:file).fetch(:file)
-   end
+  # private
+  #     def incoming_data
+  #     params.require(:file).permit(:file).fetch(:file)
+  #  end
 end
