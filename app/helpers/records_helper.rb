@@ -1,6 +1,4 @@
 require 'httparty'
-require 'csv'
-require 'smarter_csv'
 require 'soda/client'
 
 module RecordsHelper
@@ -14,17 +12,6 @@ module RecordsHelper
   # Crimespotting API, stopped updating 2015
   # def self.get_records
   #   HTTParty.get ("http://sanfrancisco.crimespotting.org/crime-data?format=json&count=1000&type=Pr,Na&dstart=2013-01-01")
-  # end
-
-  # CSV files downloaded from SF OpenData 2015-2016
-  # def self.import_records(uploaded_file)
-  #   # @csv_two = SmarterCSV.process(uploaded_file)
-  #   # @csv_one = uploaded_file
-  #   @csv_text = CSV.readlines(uploaded_file)
-  #   puts @csv_text
-  #   # CSV.readlines("public/data/arrest_data_mini.csv")
-  #   # @csv_two = CSV.parse(@csv_text, :headers => true)
-  #   # # return @csv_two
   # end
 
   @@hits = [/HALLUCINOGENIC/, /METH-AMPHETAMINE/, /MARIJUANA/, /PROSTITUTION/, /OPIATES/, /COCAINE/, /HEROIN/, /PRESCRIPTION/]
