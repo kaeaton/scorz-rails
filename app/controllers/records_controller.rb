@@ -4,10 +4,10 @@ class RecordsController < ApplicationController
   end
 
   def new
-    # @records = Record.all
+    @records = Record.all #.find(1)
     @test = "test"
     @incoming_data = RecordsHelper.get_records 
-    
+
 
   end
 

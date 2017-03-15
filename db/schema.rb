@@ -17,9 +17,11 @@ ActiveRecord::Schema.define(version: 20170217013617) do
 
   create_table "records", force: :cascade do |t|
     t.string   "popo_id"
-    t.string   "record_type"
+    t.string   "category"
     t.string   "description"
     t.string   "full_description"
+    t.string   "dayofweek"
+    t.string   "district"
     t.boolean  "sale"
     t.decimal  "lat"
     t.decimal  "long"
