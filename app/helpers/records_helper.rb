@@ -5,7 +5,7 @@ module RecordsHelper
 
   def self.get_records
     client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL"})
-    client.get("cuks-n6tp", {"$limit" => 1, "$where" => "category = 'PROSTITUTION' or category = 'DRUG/NARCOTIC'"})
+    client.get("cuks-n6tp", {"$limit" => 2, "$where" => "category = 'PROSTITUTION' or category = 'DRUG/NARCOTIC'"})
     # return results
   end
   # https://data.sfgov.org/resource/cuks-n6tp.json
@@ -20,7 +20,7 @@ module RecordsHelper
 
   def self.screen_records_for_input(record, array)
     @@hits.each do |hit|
-      if record['properties']['description'] =~ hit
+      if record.descript =~ hit
         array << record
       end 
     end
@@ -29,38 +29,38 @@ module RecordsHelper
 
   def self.description(record, array)
     # tag sales
-    record['properties']['description'] =~ /SALE/ ? record[:sale] = true : record[:sale] = false
+    record.descript =~ /SALE/ ? record.sale = true : record.sale = false
 
     # separate between cocaine and crack
-    if record['properties']['description'] =~ /COCAINE/
-      if record['properties']['description'] =~ /ROCK/
-        record[:description] = 'CRACK'
+    if record.descript =~ /COCAINE/
+      if record.descript =~ /ROCK/
+        record.description = 'CRACK'
       else
-        record[:description] = 'COCAINE'
+        record.description = 'COCAINE'
       end
 
     #find the marijuana growers
-    elsif record['properties']['description'] =~ /MARIJUANA/
-      if record['properties']['description'] =~ /CULTIVATING/
-        record[:description] = 'GROWER'
+    elsif record.descript =~ /MARIJUANA/
+      if record.descript =~ /CULTIVATING/
+        record.description = 'GROWER'
       else
-        record[:description] = 'MARIJUANA'
+        record.description = 'MARIJUANA'
       end
 
     # break out prostitution charges
-    elsif record['properties']['crime_type'] =~ /PROSTITUTION/
+    elsif record.category =~ /PROSTITUTION/
       @@prostitution.each do |prostitution|
-        if record['properties']['description'] =~ prostitution
-          record[:description] = prostitution.match(prostitution.to_s)[0]
+        if record.descript =~ prostitution
+          record.description = prostitution.match(prostitution.to_s)[0]
         end
       end
 
     # label all other charges.
     else    
       @@hits.each do |hit|
-        if record['properties']['description'] =~ hit
+        if record.descript =~ hit
           # record[:description] = 'test'
-          record[:description] = hit.match(hit.to_s)[0]
+          record.description = hit.match(hit.to_s)[0]
           # record[:description].gsub(/''/, 'MARIJUANA')
         end
       end
@@ -70,14 +70,16 @@ module RecordsHelper
   end
 
   def self.create_params(record)
-    new_record = ActionController::Parameters.new(popo_id: record['id'],
-                                              record_type: record['properties']['crime_type'],
-                                              description: record[:description],
-                                              full_description: record['properties']['description'],
-                                              sale: record[:sale],
-                                              lat: record['geometry']['coordinates'][1],
-                                              long: record['geometry']['coordinates'][0],
-                                              datetime: record['properties']['date_time']
+    new_record = ActionController::Parameters.new(popo_id: record.incidntnum,
+                                              category: record.category,
+                                              description: record.description,
+                                              full_description: record.descript,
+                                              dayofweek: record.dayofweek,
+                                              district: record.pddistrict,
+                                              sale: record.sale,
+                                              lat: record.y,
+                                              long: record.x,
+                                              datetime: record.date
                                               )
     return new_record
   end
