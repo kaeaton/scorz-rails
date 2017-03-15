@@ -1,13 +1,14 @@
-
-<%= form_for Record.new, multipart: true do |f| %>
-	<%= file_field_tag "file" %>
+<%= form_for Record.new do |f| %>
 	<%= f.submit "Acquire Records" %>
 <% end %>
 
 <div id="working">
+	<%= @test %>
 </div>
 
-
+<div>
+	<%= @incoming_data %>
+</div>
 
 
 	

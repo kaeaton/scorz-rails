@@ -177,6 +177,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  hashie
   httparty
   jbuilder (~> 2.5)
   jquery-rails
