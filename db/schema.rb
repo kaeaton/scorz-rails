@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170217013617) do
     t.string   "category"
     t.string   "description"
     t.string   "full_description"
-    t.string   "dayofweek"
+    t.string   "day_of_week"
     t.string   "district"
     t.boolean  "sale"
     t.decimal  "lat"

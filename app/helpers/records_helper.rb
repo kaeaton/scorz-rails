@@ -5,7 +5,7 @@ module RecordsHelper
 
   def self.get_records
     client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL"})
-    client.get("cuks-n6tp", {"$limit" => 2, "$where" => "category = 'PROSTITUTION' or category = 'DRUG/NARCOTIC'"})
+    client.get("cuks-n6tp", {"$limit" => 5, "$where" => "category = 'PROSTITUTION' or category = 'DRUG/NARCOTIC'"})
     # return results
   end
   # https://data.sfgov.org/resource/cuks-n6tp.json
@@ -74,7 +74,7 @@ module RecordsHelper
                                               category: record.category,
                                               description: record.description,
                                               full_description: record.descript,
-                                              dayofweek: record.dayofweek,
+                                              day_of_week: record.dayofweek,
                                               district: record.pddistrict,
                                               sale: record.sale,
                                               lat: record.y,

@@ -5,7 +5,7 @@ class CreateRecords < ActiveRecord::Migration[5.0]
       t.string :category
       t.string :description
       t.string :full_description
-      t.string :dayofweek
+      t.string :day_of_week
       t.string :district
       t.boolean :sale
       t.decimal :lat
