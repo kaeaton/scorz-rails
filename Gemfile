@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'httparty'
 gem 'smarter_csv'
+gem 'soda-ruby', :require => 'soda'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

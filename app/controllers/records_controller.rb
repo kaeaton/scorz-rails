@@ -9,9 +9,9 @@ class RecordsController < ApplicationController
 
   def create
     # begin
-    @text = Record.new(incoming_data)
-    # @csv.records = params[:file]
-      # @record = RecordsHelper.import_records(params.to_s) 
+    # @text = incoming_data
+    @csv = params[:file]
+      @record = RecordsHelper.get_records 
       # @csv_two = @csv_one.to_s.read
 
     #   flash[:success] = "<strong>Contacts Imported!</strong>"

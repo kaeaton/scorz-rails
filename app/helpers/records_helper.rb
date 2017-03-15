@@ -1,8 +1,15 @@
 require 'httparty'
 require 'csv'
 require 'smarter_csv'
+require 'soda/client'
 
 module RecordsHelper
+
+  def self.get_records
+    client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL"})
+    client.get("cuks-n6tp", {"$limit" => 10, :category => "PROSTITUTION", :category => "DRUG/NARCOTIC"})
+  end
+  # https://data.sfgov.org/resource/cuks-n6tp.json
 
   # Crimespotting API, stopped updating 2015
   # def self.get_records
@@ -10,15 +17,17 @@ module RecordsHelper
   # end
 
   # CSV files downloaded from SF OpenData 2015-2016
-  def self.import_records(uploaded_file)
-    @csv_two = SmarterCSV.process(uploaded_file)
-    # @csv_one = uploaded_file
-    # @csv_text = IO.readlines(@csv_one.to_s)
-    # @csv_two = CSV.parse(@csv_text, :headers => true)
-    # # return @csv_two
-  end
+  # def self.import_records(uploaded_file)
+  #   # @csv_two = SmarterCSV.process(uploaded_file)
+  #   # @csv_one = uploaded_file
+  #   @csv_text = CSV.readlines(uploaded_file)
+  #   puts @csv_text
+  #   # CSV.readlines("public/data/arrest_data_mini.csv")
+  #   # @csv_two = CSV.parse(@csv_text, :headers => true)
+  #   # # return @csv_two
+  # end
 
-  @@hits = [/HALLUCINOGENIC/, /METH-AMPHETAMINE/, /MARIJUANA/, /PROSTITUTION/, /OPIATES/, /COCAINE/, /HEROIN/]
+  @@hits = [/HALLUCINOGENIC/, /METH-AMPHETAMINE/, /MARIJUANA/, /PROSTITUTION/, /OPIATES/, /COCAINE/, /HEROIN/, /PRESCRIPTION/]
   @@prostitution = [/PIMPING/, /PANDERING/, /INDECENT EXPOSURE/, /LEWD CONDUCT/, /HOUSE/, /LOITERING/, /SOLICITS/]
 
   def self.screen_records_for_input(record, array)
