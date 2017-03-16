@@ -3,24 +3,26 @@ require 'soda/client'
 
 module RecordsHelper
 
+
+  # SFGov Data - Currently set for 2017 
   def self.get_records
     client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL"})
-    client.get("cuks-n6tp", {"$limit" => 5, "$where" => "category = 'PROSTITUTION' AND date > '2016-12-31T00:00:00.000' or category = 'DRUG/NARCOTIC' AND date > '2016-12-31T00:00:00.000'"})
-    # return results
+    client.get("cuks-n6tp", {"$where" => "category = 'PROSTITUTION' AND date > '2016-12-31T00:00:00.000' or category = 'DRUG/NARCOTIC' AND date > '2016-12-31T00:00:00.000'"})
   end
   # https://data.sfgov.org/resource/cuks-n6tp.json
+  # "$limit" => 5, 
 
   # Crimespotting API, stopped updating 2015
   # def self.get_records
   #   HTTParty.get ("http://sanfrancisco.crimespotting.org/crime-data?format=json&count=1000&type=Pr,Na&dstart=2013-01-01")
   # end
 
-  @@hits = [/HALLUCINOGENIC/, /METH-AMPHETAMINE/, /MARIJUANA/, /PROSTITUTION/, /OPIATES/, /COCAINE/, /HEROIN/, /PRESCRIPTION/]
-  @@prostitution = [/PIMPING/, /PANDERING/, /INDECENT EXPOSURE/, /LEWD CONDUCT/, /HOUSE/, /LOITERING/, /SOLICITS/]
+  @@hits = [/HALLUCINOGENIC/, /METH-AMPHETAMINE/, /MARIJUANA/, /PROSTITUTION/, /OPIATES/, /COCAINE/, /HEROIN/] #/PRESCRIPTION/
+  @@prostitution = [/PIMPING/, /PANDERING/, /INDECENT EXPOSURE/, /LEWD CONDUCT/, /HOUSE/, /LOITERING/] #/SOLICITS/
 
   def self.screen_records_for_input(record, array)
     @@hits.each do |hit|
-      if record.descript =~ hit
+      if record.descript =~ hit || record.category =~ /PROSTITUTION/
         array << record
       end 
     end

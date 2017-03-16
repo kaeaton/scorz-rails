@@ -6,7 +6,7 @@ class RecordsController < ApplicationController
   def new
     @records = Record.all #.find(1)
     @test = "test"
-    @incoming_data = RecordsHelper.get_records 
+    # @incoming_data = RecordsHelper.get_records 
 
 
   end
