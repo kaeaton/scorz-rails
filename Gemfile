@@ -30,8 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'httparty'
-gem 'smarter_csv'
 gem 'soda-ruby', :require => 'soda'
+gem 'hashie'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
