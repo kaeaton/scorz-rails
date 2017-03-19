@@ -10,8 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= javascript_include_tag "//maps.google.com/maps/api/js?sensor=false"
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require googleMaps
 //= require records
 //= require_tree .

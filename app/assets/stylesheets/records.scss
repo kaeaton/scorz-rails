@@ -12,6 +12,9 @@ body {
 	font: 100% $font-stack;
 	background-color: $background;
 	color: $text;
+	height: 900px;
+	margin: 0;
+	padding: 0;
 	}
 
 img {
@@ -21,4 +24,10 @@ img {
 a {
 	color: $links;
 	text-decoration: none;
+}
+
+#map {
+	height: 90%;
+	width: 90%;
+	margin: auto;
 }
