@@ -12,7 +12,7 @@ body {
 	font: 100% $font-stack;
 	background-color: $background;
 	color: $text;
-	height: 800px;
+	height: 900px;
 	margin: 0;
 	padding: 0;
 	}
@@ -29,5 +29,5 @@ a {
 #map {
 	height: 90%;
 	width: 90%;
-	float: center;
+	margin: auto;
 }
