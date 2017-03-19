@@ -3,27 +3,15 @@
   <head>
     <title>Scorz</title>
     <%= csrf_meta_tags %>
-
-    
-
-
+    <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDaEYUur-BKTCXlAYxayJbx5Scpju9Ia3M&callback=initMap">
+    </script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-
   </head>
 
   <body>
 
     <%= yield %>
-
-<script> console.log("google api loading");
-  </script>
-          <script async defer
-  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDaEYUur-BKTCXlAYxayJbx5Scpju9Ia3M&callback=initMap">
-  </script>
-  <script> console.log("google api loading");
-  </script>
 
   </body>
 </html>
