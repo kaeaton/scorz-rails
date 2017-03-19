@@ -1,0 +1,33 @@
+/*// Place all the styles related to the records controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// $background: #000;
+// $font-stack: Helvetica, sans-serif;
+// $text: #fff;
+// $links: gray;
+// $drop-down-text: #000;*/
+
+html, body, #map {
+	background-color: black;
+	color: white;
+	height: 100%;
+	width: 90%;
+	margin: auto;
+	padding: 0px;
+	clear: both;
+	}
+
+img {
+	padding-bottom: 20px;
+	}
+
+a {
+  color: gray;
+}
+
+p {
+  margin: auto;
+  width: 90%;
+  padding-top: 10px;
+}
