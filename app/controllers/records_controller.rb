@@ -1,6 +1,7 @@
 class RecordsController < ApplicationController
 
   def index
+    @options = ['METH-AMPHETAMINE', 'HEROIN', 'CRACK', 'COCAINE', 'MARIJUANA', 'OPIATES', 'HALLUCINOGENIC', 'PROSTITUTION']
   end
 
   def new

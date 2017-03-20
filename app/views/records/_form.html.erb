@@ -1,10 +1,16 @@
 test1
 
 <div id="dropdown">
+
 test2
+
 <%= form_for :record do |f| %>
+	<%= select_tag(:drug, (options_for_select(@options))) %>
 
 <% end %>
+
+</div>
+
 
 <div id="check-boxes">
 
@@ -12,4 +18,3 @@ test3
 
 </div>
 
-</div>

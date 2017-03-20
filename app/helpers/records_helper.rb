@@ -3,6 +3,7 @@ require 'soda/client'
 
 module RecordsHelper
 
+  attr_reader :hits
 
   # SFGov Data - Currently set for 2017 
   def self.get_records
