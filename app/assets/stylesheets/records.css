@@ -31,3 +31,27 @@ p {
   width: 90%;
   padding-top: 10px;
 }
+
+
+#drugs {
+  float: right;
+  margin: 150px 70px 0 0;
+}
+
+#dropdown {
+	float: left;
+	/*margin-right: 5%;*/
+	width: 40%;
+}
+
+#check-boxes {
+	float: right;
+	width: 40%;
+
+}
+
+
+
+
+
+
