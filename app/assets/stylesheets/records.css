@@ -43,13 +43,11 @@ p {
 	margin-right: 5%;
 	width: 40%; 
 }
-
-#check-boxes {
-	float: right;
-	width: 40%;
-
-}
 */
+#check-boxes {
+	padding-top: 20px;
+}
+
 
 
 

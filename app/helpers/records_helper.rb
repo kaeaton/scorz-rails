@@ -19,7 +19,7 @@ module RecordsHelper
   # end
 
   @@hits = [/HALLUCINOGENIC/, /METH-AMPHETAMINE/, /MARIJUANA/, /PROSTITUTION/, /OPIATES/, /COCAINE/, /HEROIN/] #/PRESCRIPTION/
-  @@prostitution = [/PIMPING/, /PANDERING/, /INDECENT EXPOSURE/, /LEWD CONDUCT/, /HOUSE/, /LOITERING/] #/SOLICITS/
+  @@prostitution = [/PIMPING/, /PANDERING/, /INDECENT/, /LEWD/, /HOUSE/, /LOITERING/] #/SOLICITS/
 
   def self.screen_records_for_input(record, array)
     @@hits.each do |hit|

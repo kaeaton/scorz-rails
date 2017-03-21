@@ -1,20 +1,19 @@
-test1
+<div id="main-dropdown">
 
-<div id="dropdown">
+	<%= select_tag(:drug, (options_for_select(@drug_options))) %>
 
-test2
+</div>
 
-<%= form_for :record do |f| %>
-	<%= select_tag(:drug, (options_for_select(@options))) %>
-
-<% end %>
-
+<div id="pros-dropdown">
+<%= select_tag(:pros, (options_for_select(@pros_options))) %>
 </div>
 
 
 <div id="check-boxes">
 
-test3
+<%= check_box_tag(:dealers) %>
+<%= label_tag(:dealers, 'Dealers') %>
+
 
 </div>
 
