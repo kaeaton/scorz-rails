@@ -45,9 +45,12 @@ p {
 }
 */
 #check-boxes {
-	padding-top: 20px;
+	/*padding-top: 20px;*/
 }
 
+#growers {
+	visibility: hidden;
+}
 
 
 

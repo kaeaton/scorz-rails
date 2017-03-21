@@ -4,16 +4,15 @@
 
 </div>
 
-<div id="pros-dropdown">
-<%= select_tag(:pros, (options_for_select(@pros_options))) %>
-</div>
-
 
 <div id="check-boxes">
-
-<%= check_box_tag(:dealers) %>
-<%= label_tag(:dealers, 'Dealers') %>
-
-
+	<p>
+		<%= check_box_tag(:dealers) %>
+		<%= label_tag(:dealers, 'Dealers') %>
+	</p>
+	<p id="growers">
+		<%= check_box_tag(:growers) %>
+		<%= label_tag(:growers, 'Cultivators') %>
+	</p>
 </div>
 
