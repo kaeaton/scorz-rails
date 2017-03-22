@@ -1,11 +1,14 @@
 $(document).ready(function(){
-	
+	$("#drug").change(function(event) {
+		event.preventDefault();
 
-	  // google.maps.event.addDomListener(window, 'load', initialize);
-	  // google.maps.event.addDomListener(window, "zoom_changed", initialize);
 
-	  // End Google Map
-
+		var theChosenOne = $(this).serializeArray();
+		// var method = $(this).attr('method');
+		// var text = $(this).find('#text_text').val()
+		// var data = $(this).serializeArray();
+		debugger;
+	})
 
 
 })
