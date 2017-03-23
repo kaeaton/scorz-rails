@@ -33,7 +33,7 @@ module RecordsHelper
   def self.description(record, array)
     # tag sales
     record.descript =~ /SALE/ ? record.sale = true : record.sale = false
-
+    record.category =~ /PROSTITUTION/ ? record.sale = true : record.sale = false
     # separate between cocaine and crack
     if record.descript =~ /COCAINE/
       if record.descript =~ /ROCK/
