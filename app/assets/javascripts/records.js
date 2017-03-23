@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
 	function marijuanaIsBadMkay(chosenOne){
-		if (chosenOne == "drug=MARIJUANA")
-			{$("#growing").toggleClass( "growth" )}
+		if (chosenOne = "drug=MARIJUANA")
+			{$("#growing").removeClass( "growth" )}
+		else //if (chosenOne != "drug=MARIJUANA")
+			{$("#growing").addClass( "growth" )}
 	}
 
 
