@@ -2,19 +2,13 @@ $(document).ready(function(){
 
 
 
-		$("#drug").change(function(event) {
+		$("#drugs").change(function(event) {
 			event.preventDefault();
 
-			var theChosenOne = $(this).serializeArray();
+			var theChosenOne = $("#drug").serialize();
+			var theSource = $("#dealers").serialize();
 
-		
-			$("#dealers").change(function(event){
-				event.preventDefault();
-
-				var theSource = $(this).serializeArray();
-
-				debugger;
-			})
+			debugger;
 
 		})
 
