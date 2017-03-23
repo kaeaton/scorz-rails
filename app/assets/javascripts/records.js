@@ -8,12 +8,14 @@ $(document).ready(function(){
 	}
 
 	function hookerBlow(hooker){
-		if (hooker === "hookers=1"){
-			console.log("test");
-			// chosen = "drug=COCAINE";
-			$("#drug").val("COCAINE");
-			$("#dealers").val("1")
-		}
+		$("#hookers").change(function(){
+			if (hooker === "hookers=1"){
+				$("#drug").val("COCAINE");
+				$("input[name='dealers'] :checked")
+			}
+		})
+		
+
 	}
 
 
