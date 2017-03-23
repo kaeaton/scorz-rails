@@ -7,13 +7,25 @@ $(document).ready(function(){
 			{$("#growing").addClass( "hide" )}
 	}
 
-	function hookerBlow(hooker){
-		$("#hookers").change(function(){
-			if (hooker === "hookers=1"){
-				$("#drug").val("COCAINE");
-				$("input[name='dealers'] :checked")
-			}
-		})
+	function hookersBlow(hooker){
+		if (hooker === "hookers=1"){
+			$("#drug").val("COCAINE");
+			$("input[name='dealers'] :checked")
+		}
+	}
+
+	function areTheHookersOut(hooker){
+		hookersBlow(hooker);
+		$("#hookers").change(function(event){
+		// if ($("#hookers").change()){
+			$("#drug").val("");
+		// }
+
+		});
+		// $("#drug").change(function(event){
+		// 	$("input[name='blow']").prop('checked', false);
+		// });
+
 		
 
 	}
@@ -29,7 +41,7 @@ $(document).ready(function(){
 		var theGrowers = $("#growers").serialize();
 
 		marijuanaIsBadMkay(theChosenOne);
-		hookerBlow(hookersNBlow);
+		areTheHookersOut(hookersNBlow);
 
 		debugger;
 
