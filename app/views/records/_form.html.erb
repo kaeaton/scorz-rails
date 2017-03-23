@@ -6,11 +6,15 @@
 
 
 <div id="check-boxes">
-	<p>
+	<p id="deal">
 		<%= check_box_tag(:dealers) %>
 		<%= label_tag(:dealers, 'Dealers') %>
 	</p>
-	<p class="growth" id="growing">
+	<p id="blow">
+		<%= check_box_tag(:hookers) %>
+		<%= label_tag(:hookers, 'Hookers and Blow') %>
+	</p>
+	<p class="hide" id="growing">
 		<%= check_box_tag(:growers) %>
 		<%= label_tag(:growers, 'Cultivators') %>
 	</p>

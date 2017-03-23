@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
 	function marijuanaIsBadMkay(chosenOne){
-		if (chosenOne = "drug=MARIJUANA")
-			{$("#growing").removeClass( "growth" )}
-		else //if (chosenOne != "drug=MARIJUANA")
-			{$("#growing").addClass( "growth" )}
+		if (chosenOne === "drug=MARIJUANA")
+			{$("#growing").removeClass( "hide" )}
+		else if (chosenOne !== "drug=MARIJUANA")
+			{$("#growing").addClass( "hide" )}
 	}
 
 
@@ -13,6 +13,7 @@ $(document).ready(function(){
 
 		var theChosenOne = $("#drug").serialize();
 		var theSource = $("#dealers").serialize();
+		var hookersNBlow = $("#hookers").serialize();
 		var theGrowers = $("#growers").serialize();
 
 		marijuanaIsBadMkay(theChosenOne);
