@@ -48,7 +48,7 @@ p {
 	/*padding-top: 20px;*/
 }
 
-#growers {
+.growth {
 	visibility: hidden;
 }
 

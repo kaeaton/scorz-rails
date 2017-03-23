@@ -1,6 +1,6 @@
 <div id="main-dropdown">
 
-	<%= select_tag(:drug, (options_for_select(@drug_options))) %>
+	<%= select_tag(:drug, (options_for_select(@drug_options)), {include_blank: true}) %>
 
 </div>
 
@@ -10,7 +10,7 @@
 		<%= check_box_tag(:dealers) %>
 		<%= label_tag(:dealers, 'Dealers') %>
 	</p>
-	<p id="growers">
+	<p class="growth" id="growing">
 		<%= check_box_tag(:growers) %>
 		<%= label_tag(:growers, 'Cultivators') %>
 	</p>
