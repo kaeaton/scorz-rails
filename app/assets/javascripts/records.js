@@ -40,8 +40,9 @@ $(document).ready(function(){
 			url: "locations",
 			dataType: "text",
 			data: theChosenOne,
-			success: function(result){
-				console.log(result + ' we got data, bitches!')
+			success: function(json){
+				// result = $.text(json);
+				console.log(json + ' we got data, bitches!');
 			}
 		})
 

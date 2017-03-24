@@ -40,11 +40,11 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @test = "testing"
+    @test = {"true": "please"}
 
     respond_to do |format|
       format.html
-      format.json {render json: @test}
+      format.json {render :json => @test}
     end
   end
 
