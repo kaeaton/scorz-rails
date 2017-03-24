@@ -10,18 +10,20 @@ $(document).ready(function(){
 	function hookersBlow(hooker){
 		if (hooker === "hookers=1"){
 			$("#drug").val("COCAINE");
-			$("input[name='dealers'] :checked")
+			$("input#dealers").prop('checked', true);
 		}
 	}
 
 	function areTheHookersOut(hooker){
 		hookersBlow(hooker);
 		$("#hookers").change(function(event){
-		// if ($("#hookers").change()){
 			$("#drug").val("");
-		// }
+			$("input#dealers").prop('checked', false);
 
 		});
+		// $("#drug").change(function(event){
+		// 	$("hookers").prop('checked', false);
+		// })
 		// $("#drug").change(function(event){
 		// 	$("input[name='blow']").prop('checked', false);
 		// });
