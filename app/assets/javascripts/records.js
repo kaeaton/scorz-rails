@@ -11,7 +11,7 @@ $(document).ready(function(){
 		if (hooker === "hookers=1"){
 			$("#drug").val("COCAINE");
 			$("input#dealers").prop('checked', true);
-		}
+		} 
 	}
 
 	function areTheHookersOut(hooker){
@@ -19,17 +19,7 @@ $(document).ready(function(){
 		$("#hookers").change(function(event){
 			$("#drug").val("");
 			$("input#dealers").prop('checked', false);
-
 		});
-		// $("#drug").change(function(event){
-		// 	$("hookers").prop('checked', false);
-		// })
-		// $("#drug").change(function(event){
-		// 	$("input[name='blow']").prop('checked', false);
-		// });
-
-		
-
 	}
 
 
