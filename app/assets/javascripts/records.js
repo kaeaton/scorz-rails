@@ -22,8 +22,6 @@ $(document).ready(function(){
 		});
 	}
 
-
-
 	$("#drugs").change(function(event) {
 		event.preventDefault();
 
@@ -35,7 +33,7 @@ $(document).ready(function(){
 		marijuanaIsBadMkay(theChosenOne);
 		areTheHookersOut(hookersNBlow);
 
-		debugger;
+		// debugger;
 
 	})
 
