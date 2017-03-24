@@ -40,6 +40,12 @@ class RecordsController < ApplicationController
   end
 
   def show
+    @test = "testing"
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @test}
+    end
   end
 
   # private

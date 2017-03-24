@@ -35,6 +35,16 @@ $(document).ready(function(){
 
 		// debugger;
 
+		$.ajax({
+			type: "GET",
+			url: "locations",
+			dataType: "text",
+			data: theChosenOne,
+			success: function(result){
+				console.log(result + ' we got data, bitches!')
+			}
+		})
+
 	})
 
 
