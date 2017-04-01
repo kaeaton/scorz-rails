@@ -38,11 +38,12 @@ $(document).ready(function(){
 		$.ajax({
 			type: "GET",
 			url: "locations",
-			dataType: "text",
+			dataType: "json",
 			data: theChosenOne,
-			success: function(json){
+			success: function(incoming){
+				// debugger
 				// result = $.text(json);
-				console.log(json + ' we got data, bitches!');
+				console.log(incoming);
 			}
 		})
 
