@@ -8,7 +8,7 @@ module RecordsHelper
   # SFGov Data - Currently set for 2017 
   def self.get_records
     client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL"})
-    client.get("cuks-n6tp", {"$where" => "category = 'PROSTITUTION' AND date > '2015-12-31T00:00:00.000' or category = 'DRUG/NARCOTIC' AND date > '2015-12-31T00:00:00.000'"})
+    client.get("cuks-n6tp", {"$where" => "category = 'PROSTITUTION' AND date > '2016-12-31T00:00:00.000' or category = 'DRUG/NARCOTIC' AND date > '2016-12-31T00:00:00.000'"})
   end
   # https://data.sfgov.org/resource/cuks-n6tp.json
   # "$limit" => 5, 
@@ -32,8 +32,11 @@ module RecordsHelper
 
   def self.description(record, array)
     # tag sales
-    record.descript =~ /SALE/ ? record.sale = true : record.sale = false
-    record.category =~ /PROSTITUTION/ ? record.sale = true : record.sale = false
+    if record.category =~ /PROSTITUTION/
+      record.sale = true
+    else
+      record.descript =~ /SALE/ ? record.sale = true : record.sale = false
+    end
 
     # separate between cocaine and crack
     if record.descript =~ /COCAINE/

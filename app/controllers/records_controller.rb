@@ -36,11 +36,12 @@ class RecordsController < ApplicationController
 
   def show
     @test = params[:drug].to_s
-
+    @return = Record.where(description: @test)
+    pry
     respond_to do |format|
       format.html
-      format.json {render json: @test }  #=> format
-      pry
+      format.json {render json: @return }  #=> format
+      # pry
     end
   end
 
