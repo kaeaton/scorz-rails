@@ -35,7 +35,7 @@ $(document).ready(function(){
 
 
 		var formData = theChosenOne + "&" + theSource + "&" + hookersNBlow + "&" + theGrowers
-		debugger;
+		// debugger;
 
 		$.ajax({
 			type: "GET",

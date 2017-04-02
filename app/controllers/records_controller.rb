@@ -37,9 +37,11 @@ class RecordsController < ApplicationController
   def show
     @incoming_drug_request = params[:drug].to_s
     @dealer_request = params[:dealers].to_s
-    @returned_records = Record.where(description: @incoming_drug_request)
-    
-
+    # @returned_records = Record.where(description: @incoming_drug_request)
+    if params[:hookers] = 1
+      @returned_records = DataHelper.hookers_n_blow
+      # pry
+    end
     # pry
     respond_to do |format|
       format.html
