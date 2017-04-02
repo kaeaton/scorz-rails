@@ -6,16 +6,11 @@ class RecordsController < ApplicationController
   end
 
   def new
-    @records = Record.all #.find(1)
-    @test = "test"
-    # @incoming_data = RecordsHelper.get_records 
-
-
+    @records = Record.all
   end
 
   def create
     incoming_data = RecordsHelper.get_records 
-    # @test = "test"
 
     # whitelisting records for the db. This will halve the db size.
     all_records = []
@@ -40,10 +35,26 @@ class RecordsController < ApplicationController
   end
 
   def show
+    @incoming_drug_request = params[:drug].to_s
+
+    if params[:hookers] == '1'
+      @returned_records = DataHelper.hookers_n_blow
+    elsif params[:growers] == '1'
+      @returned_records = DataHelper.growers
+    elsif params[:dealers] == '1'
+      @returned_records = DataHelper.dealers(@incoming_drug_request)
+    else
+      @returned_records = Record.where(description: @incoming_drug_request)
+    end
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @returned_records }  #=> format
+    end
   end
 
   # private
-  #     def incoming_data
-  #     params.require(:file).permit(:file).fetch(:file)
+  #   def incoming_data
+  #     params.require(:drug).permit(:drug).fetch(:drug)
   #  end
 end

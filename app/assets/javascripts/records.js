@@ -33,7 +33,19 @@ $(document).ready(function(){
 		marijuanaIsBadMkay(theChosenOne);
 		areTheHookersOut(hookersNBlow);
 
+
+		var formData = theChosenOne + "&" + theSource + "&" + hookersNBlow + "&" + theGrowers
 		// debugger;
+
+		$.ajax({
+			type: "GET",
+			url: "locations",
+			dataType: "json",
+			data: formData,
+			success: function(incoming){
+				console.log(incoming);
+			}
+		})
 
 	})
 
