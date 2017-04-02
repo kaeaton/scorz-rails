@@ -3,27 +3,14 @@ class RecordsController < ApplicationController
   def index
     @drug_options = [['Meth', 'METH-AMPHETAMINE'], ['Heroin', 'HEROIN'], ['Crack', 'CRACK'], ['Cocaine', 'COCAINE'], ['Marijuana', 'MARIJUANA'], ['Opium', 'OPIATES'], ['Hallucinogens', 'HALLUCINOGENIC'], ['Prostitutes', 'LOITERING'], ['Pimps', 'PIMPING'], ['Brothels', 'HOUSE']]
     @pros_options = [['Prostitutes', 'LOITERING'], ['Pimps', 'PIMPING'],  ['Indecent Exposure', 'INDECENT'], ['Lewd Behavior', 'LEWD']]
-    
-    # @test = "work"
-    
-    # respond_to do |format|
-    #   # pry
-    #   format.html
-    #   format.json {render json: @test }  #=> format
-    # end
   end
 
   def new
-    @records = Record.all #.find(1)
-    @test = "test"
-    # @incoming_data = RecordsHelper.get_records 
-
-
+    @records = Record.all
   end
 
   def create
     incoming_data = RecordsHelper.get_records 
-    # @test = "test"
 
     # whitelisting records for the db. This will halve the db size.
     all_records = []
@@ -48,17 +35,17 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @test = {title: "work"}
+    @test = params[:drug].to_s
 
     respond_to do |format|
-      # pry
       format.html
       format.json {render json: @test }  #=> format
+      pry
     end
   end
 
   # private
-  #     def incoming_data
-  #     params.require(:file).permit(:file).fetch(:file)
+  #   def incoming_data
+  #     params.require(:drug).permit(:drug).fetch(:drug)
   #  end
 end

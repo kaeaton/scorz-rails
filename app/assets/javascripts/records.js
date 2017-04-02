@@ -41,8 +41,6 @@ $(document).ready(function(){
 			dataType: "json",
 			data: theChosenOne,
 			success: function(incoming){
-				// debugger
-				// result = $.text(json);
 				console.log(incoming);
 			}
 		})
