@@ -36,17 +36,20 @@ class RecordsController < ApplicationController
 
   def show
     @incoming_drug_request = params[:drug].to_s
-    @dealer_request = params[:dealers].to_s
-    # @returned_records = Record.where(description: @incoming_drug_request)
-    if params[:hookers] = 1
+
+    if params[:hookers] == '1'
       @returned_records = DataHelper.hookers_n_blow
-      # pry
+    elsif params[:growers] == '1'
+      @returned_records = DataHelper.growers
+    elsif params[:dealers] == '1'
+      @returned_records = DataHelper.dealers(@incoming_drug_request)
+    else
+      @returned_records = Record.where(description: @incoming_drug_request)
     end
-    # pry
+
     respond_to do |format|
       format.html
       format.json {render json: @returned_records }  #=> format
-      # pry
     end
   end
 

@@ -7,4 +7,12 @@ module DataHelper
     everyone << Record.where(description: 'PIMPING')
     return everyone.flatten
   end
+
+  def self.dealers(drug)
+    Record.where(description: drug).where(sale: true)
+  end
+
+  def self.growers
+    Record.where(description: 'GROWER')
+  end
 end
