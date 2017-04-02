@@ -33,13 +33,15 @@ $(document).ready(function(){
 		marijuanaIsBadMkay(theChosenOne);
 		areTheHookersOut(hookersNBlow);
 
-		// debugger;
+
+		var formData = theChosenOne + "&" + theSource + "&" + hookersNBlow + "&" + theGrowers
+		debugger;
 
 		$.ajax({
 			type: "GET",
 			url: "locations",
 			dataType: "json",
-			data: theChosenOne,
+			data: formData,
 			success: function(incoming){
 				console.log(incoming);
 			}

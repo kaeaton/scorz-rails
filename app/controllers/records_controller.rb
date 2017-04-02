@@ -35,12 +35,15 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @test = params[:drug].to_s
-    @return = Record.where(description: @test)
-    pry
+    @incoming_drug_request = params[:drug].to_s
+    @dealer_request = params[:dealers].to_s
+    @returned_records = Record.where(description: @incoming_drug_request)
+    
+
+    # pry
     respond_to do |format|
       format.html
-      format.json {render json: @return }  #=> format
+      format.json {render json: @returned_records }  #=> format
       # pry
     end
   end
