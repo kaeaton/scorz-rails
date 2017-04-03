@@ -52,9 +52,4 @@ class RecordsController < ApplicationController
       format.json {render json: @returned_records }  #=> format
     end
   end
-
-  # private
-  #   def incoming_data
-  #     params.require(:drug).permit(:drug).fetch(:drug)
-  #  end
 end
