@@ -33,6 +33,8 @@ gem 'httparty'
 gem 'soda-ruby', :require => 'soda'
 gem 'hashie'
 
+gem "d3-rails"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

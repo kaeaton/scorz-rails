@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require googleMaps
+//= require d3
 //= require records
 //= require_tree .
