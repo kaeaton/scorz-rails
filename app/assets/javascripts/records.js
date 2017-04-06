@@ -74,47 +74,85 @@ $(document).ready(function(){
 			data: formData,
 			success: function(incoming){
 				console.log(incoming);
+				console.log(incoming[0].description)
 
-				var overlay = new google.maps.OverlayView();
+				var overlay; // = new google.maps.OverlayView();
+				Scorz.prototype = new google.maps.OverlayView();
+				function initMap() {
+					var map = new google.maps.Map(document.getElementById('map'), {
+					    zoom: 11,
+					    center: {lat: 62.323907, lng: -150.109291},
+					    mapTypeId: 'satellite'
+					});
+
 				// Add the container when the overlay is added to the map.
-		        overlay.onAdd = function(){
-		            var layer = d3.select(this.getPanes().overlayLayer)
-		                        .append("div")
-		                        .attr("class", "scores");
-			        // Draw each marker as a separate SVG element.
-			        // We could use a single SVG, but what size would it have?
-			        overlay.draw = function() {
-			            var projection = this.getProjection(),
-			                padding = 12;
+		    //     overlay.onAdd = function(){
+		    //         var layer = d3.select(this.getPanes().overlayLayer)
+		    //                     .append("div")
+		    //                     .attr("class", "scores");
+			   //      // Draw each marker as a separate SVG element.
+			   //      // We could use a single SVG, but what size would it have?
+			   //      overlay.draw = function() {
+			   //          var projection = this.getProjection(),
+			   //              padding = 12;
 
-				        var marker = layer.selectAll("svg")
-			                            .data(d3.entries(incoming))
-			                            .each(transform) // update existing markers
-			                            .enter().append("svg:svg")
-			                            .each(transform)
-			                            .attr("class", "marker")
-			                            .each(transform)
+				  //       var marker = layer.selectAll("svg")
+			   //                          .data(d3.entries(incoming))
+			   //                          .each(transform) // update existing markers
+			   //                          .enter().append("svg:svg")
+			   //                          .each(transform)
+			   //                          .attr("class", "marker")
+			   //                          .each(transform)
 
-			            var firstObject = Object.keys(ajaxResults)[0];
-			            var drugType = ajaxResults[firstObject][2]
-			            console.log(drugType);
+			   //          var firstObject = Object.keys(incoming)[0];
+			   //          var drugType = firstObject.description
+			   //          console.log(drugType);
 
-			            marker.append("svg:circle")
-			                .attr("r", 4)
-			                .style("fill", function(d) { return styling(drugType) })
-		                  	.style({'stroke': 'black', 'stroke-width': 0.2})
-		                  	.attr("cx", padding)
-		                 	.attr("cy", padding)
+			   //          marker.append("svg:circle")
+			   //              .attr("r", 4)
+			   //              .style("fill", function(d) { return styling(drugType) })
+		    //               	.style({'stroke': 'black', 'stroke-width': 0.2})
+		    //               	.attr("cx", padding)
+		    //              	.attr("cy", padding)
 
-						function transform(d) {
-		            		d = new google.maps.LatLng(d.value[1], d.value[0]);
-		            		d = projection.fromLatLngToDivPixel(d);
-		            		return d3.select(this)
-		                		.style("left", (d.x - padding) + "px")
-		                		.style("top", (d.y - padding) + "px");
-	                	}
-		            }
-	          	}
+		    //             // marker.exit().remove()
+
+						// function transform(d) {
+		    //         		d = new google.maps.LatLng(d.lat, d.long);
+		    //         		d = projection.fromLatLngToDivPixel(d);
+		    //         		return d3.select(this)
+		    //             		.style("left", (d.x - padding) + "px")
+		    //             		.style("top", (d.y - padding) + "px");
+	     //            	}
+		    //         }
+	     //      	}
+		     		overlay = new Scorz(map);
+		     		console.log("div styling");}
+
+		     		function Scorz(map) {
+		     			this.map_ = map;
+		     			this.div_ = null;
+		     			this.setMap(map)
+		     		}
+
+		     		Scorz.prototype.onAdd = function() {
+		     			var div = document.createElement('div');
+		     			div.style.borderStyle = 'none';
+		     			div.style.borderWidth = '0px';
+		     			div.style.position = 'absolute';
+		     			
+
+		     			this.div_ = div;
+		     		};
+
+
+
+
+
+
+		     	
+	     		
+	          	// overlay.setMap(map);
 			}
 		})
 	})
