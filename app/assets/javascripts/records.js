@@ -30,8 +30,8 @@ $(document).ready(function(){
 
 	// Bring forth the map
 
-	var overlay;
-	Scorz.prototype = new google.maps.OverlayView();
+	// var overlay;
+	// Scorz.prototype = new google.maps.OverlayView();
 
 	function initMap() {
 		var map = new google.maps.Map(document.getElementById('map'), {
@@ -39,28 +39,29 @@ $(document).ready(function(){
 			center: {lat: 37.75, lng: -122.445}
 		});
 
-		overlay = new Scorz(map);
- 		console.log('map with overlay');
+	// 	// overlay = new Scorz(map);
+ // 		console.log('map');
  	}
 
-	function Scorz(map) {
-		this.map_ = map
-		this.div_ = null
+	// function Scorz(map) {
+	// 	this.map_ = map
+	// 	this.div_ = null
 
-		this.setMap(map)
-	}
+	// 	this.setMap(map)
+	// }
 
-	Scorz.prototype.onAdd = function() {
-		var div = document.createElement('div');
-		div.style.borderStyle = 'none';
-		div.style.borderWidth = '0px';
-		div.style.position = 'absolute';
+	// Scorz.prototype.onAdd = function() {
+	// 	var div = document.createElement('div');
+	// 	div.style.borderStyle = 'none';
+	// 	div.style.borderWidth = '0px';
+	// 	div.style.position = 'absolute';
 
-		this.div_ = div
+	// 	this.div_ = div
 
-		var panes = this.getPanes();
-		panes.overlayLayer.appendChild(div);
-	};
+	// 	var panes = this.getPanes();
+	// 	panes.overlayLayer.appendChild(div);
+	// 	console.log('map overlay')
+	// };
 
 	google.maps.event.addDomListener(window, 'load', initMap);
 
@@ -113,83 +114,75 @@ $(document).ready(function(){
 				console.log(incoming);
 				console.log(incoming[0].description)
 
-				// var overlay; // = new google.maps.OverlayView();
+				var overlay;
+				Scorz.prototype = new google.maps.OverlayView();
+
+				function initMap() {
+					var map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 13,
+						center: {lat: 37.75, lng: -122.445}
+					});
+
+					// overlay = new Scorz(map);
+			 		console.log('map');
+			 	}
+
+				function Scorz(map) {
+					this.map_ = map
+					this.div_ = null
+
+					this.setMap(map)
+				}
+
+				Scorz.prototype.onAdd = function() {
+					var div = document.createElement('div');
+					div.style.borderStyle = 'none';
+					div.style.borderWidth = '0px';
+					div.style.position = 'absolute';
+
+					this.div_ = div
+
+					var panes = this.getPanes();
+					panes.overlayLayer.appendChild(div);
+					console.log('map overlay')
+				};
+
+				// google.maps.event.addDomListener(window, 'load', initMap);
+
+
+				// var layer = d3.select(this.getPanes().overlayLayer)
+				// 			.append('div')
+				// 			.attr('class', 'scores');
+
+				// Draw each marker as a separate SVG element
+
+				// var overlay;
 				// Scorz.prototype = new google.maps.OverlayView();
+
 				// function initMap() {
-				// 	var map = new google.maps.Map(document.getElementById('map'), {
-				// 	    zoom: 11,
-				// 	    center: {lat: 62.323907, lng: -150.109291},
-				// 	    mapTypeId: 'satellite'
-				// 	});
 
-				// Add the container when the overlay is added to the map.
-		    //     overlay.onAdd = function(){
-		    //         var layer = d3.select(this.getPanes().overlayLayer)
-		    //                     .append("div")
-		    //                     .attr("class", "scores");
-			   //      // Draw each marker as a separate SVG element.
-			   //      // We could use a single SVG, but what size would it have?
-			   //      overlay.draw = function() {
-			   //          var projection = this.getProjection(),
-			   //              padding = 12;
+				// }
 
-				  //       var marker = layer.selectAll("svg")
-			   //                          .data(d3.entries(incoming))
-			   //                          .each(transform) // update existing markers
-			   //                          .enter().append("svg:svg")
-			   //                          .each(transform)
-			   //                          .attr("class", "marker")
-			   //                          .each(transform)
 
-			   //          var firstObject = Object.keys(incoming)[0];
-			   //          var drugType = firstObject.description
-			   //          console.log(drugType);
+				// overlay.draw = function(){
+				// 	var projection = this.getProjection(),
+				// 		padding = 12;
 
-			   //          marker.append("svg:circle")
-			   //              .attr("r", 4)
-			   //              .style("fill", function(d) { return styling(drugType) })
-		    //               	.style({'stroke': 'black', 'stroke-width': 0.2})
-		    //               	.attr("cx", padding)
-		    //              	.attr("cy", padding)
+				// 	var marker = layer.selectAll('svg')
+				// 						.data(d3.entries(incoming))
+				// 						.each(transform) //update existing markers
+				// 						.enter().append('svg:svg')
+				// 						.each(transform)
+				// 						.attr('class', 'marker')
+				// 						.each(transform)
 
-		    //             // marker.exit().remove()
-
-						// function transform(d) {
-		    //         		d = new google.maps.LatLng(d.lat, d.long);
-		    //         		d = projection.fromLatLngToDivPixel(d);
-		    //         		return d3.select(this)
-		    //             		.style("left", (d.x - padding) + "px")
-		    //             		.style("top", (d.y - padding) + "px");
-	     //            	}
-		    //         }
-	     //      	}
-		     		// overlay = new Scorz(map);
-		     		// console.log("div styling");}
-
-		     		// function Scorz(map) {
-		     		// 	this.map_ = map;
-		     		// 	this.div_ = null;
-		     		// 	this.setMap(map)
-		     		// }
-
-		     		// Scorz.prototype.onAdd = function() {
-		     		// 	var div = document.createElement('div');
-		     		// 	div.style.borderStyle = 'none';
-		     		// 	div.style.borderWidth = '0px';
-		     		// 	div.style.position = 'absolute';
-		     			
-
-		     		// 	this.div_ = div;
-		     		// };
+				// 	var firstObject = Object.keys(incoming)[0];
+				// 	console.log(firstObject)
+				// }
 
 
 
 
-
-
-		     	
-	     		
-	          	// overlay.setMap(map);
 			}
 		})
 	})
