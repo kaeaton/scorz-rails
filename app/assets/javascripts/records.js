@@ -28,6 +28,43 @@ $(document).ready(function(){
 	    }
 	}
 
+	// Bring forth the map
+
+	var overlay;
+	Scorz.prototype = new google.maps.OverlayView();
+
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 13,
+			center: {lat: 37.75, lng: -122.445}
+		});
+
+		overlay = new Scorz(map);
+ 		console.log('map with overlay');
+ 	}
+
+	function Scorz(map) {
+		this.map_ = map
+		this.div_ = null
+
+		this.setMap(map)
+	}
+
+	Scorz.prototype.onAdd = function() {
+		var div = document.createElement('div');
+		div.style.borderStyle = 'none';
+		div.style.borderWidth = '0px';
+		div.style.position = 'absolute';
+
+		this.div_ = div
+
+		var panes = this.getPanes();
+		panes.overlayLayer.appendChild(div);
+	};
+
+	google.maps.event.addDomListener(window, 'load', initMap);
+
+
 	// Dropdown and checkbox functions
 
 	function marijuanaIsBadMkay(chosenOne){
@@ -76,14 +113,14 @@ $(document).ready(function(){
 				console.log(incoming);
 				console.log(incoming[0].description)
 
-				var overlay; // = new google.maps.OverlayView();
-				Scorz.prototype = new google.maps.OverlayView();
-				function initMap() {
-					var map = new google.maps.Map(document.getElementById('map'), {
-					    zoom: 11,
-					    center: {lat: 62.323907, lng: -150.109291},
-					    mapTypeId: 'satellite'
-					});
+				// var overlay; // = new google.maps.OverlayView();
+				// Scorz.prototype = new google.maps.OverlayView();
+				// function initMap() {
+				// 	var map = new google.maps.Map(document.getElementById('map'), {
+				// 	    zoom: 11,
+				// 	    center: {lat: 62.323907, lng: -150.109291},
+				// 	    mapTypeId: 'satellite'
+				// 	});
 
 				// Add the container when the overlay is added to the map.
 		    //     overlay.onAdd = function(){
@@ -126,24 +163,24 @@ $(document).ready(function(){
 	     //            	}
 		    //         }
 	     //      	}
-		     		overlay = new Scorz(map);
-		     		console.log("div styling");}
+		     		// overlay = new Scorz(map);
+		     		// console.log("div styling");}
 
-		     		function Scorz(map) {
-		     			this.map_ = map;
-		     			this.div_ = null;
-		     			this.setMap(map)
-		     		}
+		     		// function Scorz(map) {
+		     		// 	this.map_ = map;
+		     		// 	this.div_ = null;
+		     		// 	this.setMap(map)
+		     		// }
 
-		     		Scorz.prototype.onAdd = function() {
-		     			var div = document.createElement('div');
-		     			div.style.borderStyle = 'none';
-		     			div.style.borderWidth = '0px';
-		     			div.style.position = 'absolute';
+		     		// Scorz.prototype.onAdd = function() {
+		     		// 	var div = document.createElement('div');
+		     		// 	div.style.borderStyle = 'none';
+		     		// 	div.style.borderWidth = '0px';
+		     		// 	div.style.position = 'absolute';
 		     			
 
-		     			this.div_ = div;
-		     		};
+		     		// 	this.div_ = div;
+		     		// };
 
 
 
