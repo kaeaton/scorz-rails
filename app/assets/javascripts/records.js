@@ -4,11 +4,11 @@ $(document).ready(function(){
 
 	function styling(drugType){
 	    switch(drugType){
-	        case "PIMPING":
+	        case "MARIJUANA":
 		        console.log("switch")
 		        return "rgba(74, 145, 48, 0.3)";
 		        break;
-	        case "COCAINE":
+	        case "PIMPING":
 		        return "rgba(255, 0, 0, 0.3)";
 		        break;
 	        case "METH-AMPHETAMINE":
@@ -92,26 +92,41 @@ sale: true}
 		var projection = this.getProjection();
 		var div = this.div_;
 		var padding = 12;
-		console.log(testData)
-		var marker = d3.select('div')
-							.data(testData)
-							// .each(transform)
-							.enter().append('svg:svg')
-							// .each(transform)
-							.attr('class', 'marker')
-							// .each(transform)
+		console.log(testData);
 
 		var firstObject = Object.keys(testData)[0];
 		var drugType = testData[firstObject].description;
+		// var coordinates = {["coordinates"]: [testData[firstObject].long, testData[firstObject]lat]};
 		console.log(firstObject);
 		console.log(drugType);
+		// console.log(coordinates);
 
-		marker.d3.append("svg:circle")
+		var marker = d3.select('#map')
+							.selectAll('svg')
+							.data([-122.410416664036, -122.454598859175], function(d){return d;})
+							// .data(testData)
+							// // .each(transform)
+							.enter().append('svg:svg')
+							// // .each(transform)
+							.attr('class', 'marker')
+							// // .each(transform)
+							// .attr('x')
+							// .attr('y')
+
+		console.log(marker);
+
+		// var firstObject = Object.keys(testData)[0];
+		// var drugType = testData[firstObject].description;
+		// console.log(firstObject);
+		// console.log(drugType);
+
+		marker.enter().append("circle")
                 .attr("r", 4)
                 .style("fill", function(d) { return styling(drugType) })
-                .style({'stroke': 'black', 'stroke-width': 0.2})
-                .attr("cx", padding)
-                .attr("cy", padding)
+                .style('stroke', 'black') 
+                .style('stroke-width', 0.2)
+                .attr("cx", function(d) {return d;})//padding)
+                .attr("cy", 37.7727234013654) //padding)
 	}
 
 	google.maps.event.addDomListener(window, 'load', initMap);
