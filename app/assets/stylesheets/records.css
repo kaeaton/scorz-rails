@@ -32,6 +32,13 @@ p {
   padding-top: 10px;
 }
 
+#test {
+	height: 50px;
+}
+
+.graf {
+	height: 50px;
+}
 
 #drugs {
   float: right;

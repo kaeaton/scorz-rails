@@ -27,6 +27,22 @@ $(document).ready(function(){
 		        return "rgba(72, 0, 32, 0.3)";
 	    }
 	}
+var svg = d3.select("#test").append('svg');
+
+	var circle = svg.selectAll("d3.symbolCircle")
+	.attr("class", "graf")
+	// .attr()
+    .data([32, 57, 293], function(d) { return d; });
+
+
+circle.enter().append("circle")
+    .attr("cy", 60)
+    .attr("cx", function(d, i) { return i * 100 + 30; })
+    .attr("r", function(d) { return Math.sqrt(d); })
+    .style("fill", "red")
+    // .update();
+
+// circle.exit().remove();
 
 	// Bring forth the map
 
@@ -80,6 +96,7 @@ sale: true}
 		div.style.borderStyle = 'none';
 		div.style.borderWidth = '0px';
 		div.style.position = 'absolute';
+		div.id = 'dots'
 
 		this.div_ = div
 
@@ -90,46 +107,76 @@ sale: true}
 
 	Scorz.prototype.draw = function() {
 		var projection = this.getProjection();
-		var div = this.div_;
-		var padding = 12;
-		console.log(testData);
+		var div = this.div_
+		console.log("draw function")
 
-		var firstObject = Object.keys(testData)[0];
-		var drugType = testData[firstObject].description;
-		// var coordinates = {["coordinates"]: [testData[firstObject].long, testData[firstObject]lat]};
-		console.log(firstObject);
-		console.log(drugType);
-		// console.log(coordinates);
+		var svg = d3.select("#map").append('svg');
 
-		var marker = d3.select('#map')
-							.selectAll('svg')
-							.data([-122.410416664036, -122.454598859175], function(d){return d;})
-							// .data(testData)
-							// // .each(transform)
-							.enter().append('svg:svg')
-							// // .each(transform)
-							.attr('class', 'marker')
-							// // .each(transform)
-							// .attr('x')
-							// .attr('y')
+		var circle = svg.selectAll("d3.symbolCircle")
+		.attr("class", "graf")
+		// .attr()
+	    .data([32, 57, 293], function(d) { return d; });
 
-		console.log(marker);
-
-		// var firstObject = Object.keys(testData)[0];
-		// var drugType = testData[firstObject].description;
-		// console.log(firstObject);
-		// console.log(drugType);
-
-		marker.enter().append("circle")
-                .attr("r", 4)
-                .style("fill", function(d) { return styling(drugType) })
-                .style('stroke', 'black') 
-                .style('stroke-width', 0.2)
-                .attr("cx", function(d) {return d;})//padding)
-                .attr("cy", 37.7727234013654) //padding)
+		circle.enter().append("circle")
+		    .attr("cy", 60)
+		    .attr("cx", function(d, i) { return i * 100 + 30; })
+		    .attr("r", function(d) { return Math.sqrt(d); })
+		    .style("fill", "red")
+		    // .update();
 	}
 
+	// Scorz.prototype.draw = function() {
+	// 	var projection = this.getProjection();
+	// 	var div = this.div_;
+	// 	var padding = 12;
+	// 	console.log(testData);
+
+	// 	var firstObject = Object.keys(testData)[0];
+	// 	var drugType = testData[firstObject].description;
+	// 	// var coordinates = {["coordinates"]: [testData[firstObject].long, testData[firstObject]lat]};
+	// 	console.log(firstObject);
+	// 	console.log(drugType);
+	// 	// console.log(coordinates);
+
+	// 	var marker = d3.select('#dots')
+	// 						.selectAll('svg')
+	// 						.data([-122.410416664036, -122.454598859175], function(d){return d;})
+	// 						// .data(testData)
+	// 						.enter().append('svg:svg')
+	// 						.attr('class', 'marker')
+	// 						// .attr('x', 37.7727234013654)
+	// 						.attr('y')
+ //                .attr("r", 4)
+
+
+	// 	console.log(marker);
+
+	// 	// var firstObject = Object.keys(testData)[0];
+	// 	// var drugType = testData[firstObject].description;
+	// 	// console.log(firstObject);
+	// 	// console.log(drugType);
+
+	// 	marker.enter().append("d3.symbolCircle")
+ //                .attr("r", 4)
+ //                .style("fill", "black")// d3.schemeSet3 // function(d) { return styling(drugType) })
+ //                .style('stroke', 'black') 
+ //                .style('stroke-width', 0.2)
+ //                .attr("cx", padding)
+ //                .attr("cy", padding)
+ //        console.log("Theoretically dots appended.");
+
+ //        function transform(d) {
+ //            d = new google.maps.LatLng(d.value[1], d.value[0]);
+ //            d = projection.fromLatLngToDivPixel(d);
+ //            return d3.select(this)
+ //                .style("left", (d.x - padding) + "px")
+ //                .style("top", (d.y - padding) + "px");
+ //        }
 	google.maps.event.addDomListener(window, 'load', initMap);
+	})
+
+    // overlay.setMap(map);
+
 
 
 	// Dropdown and checkbox functions
@@ -291,4 +338,4 @@ sale: true}
 			}
 		})
 	})
-})
+// })
