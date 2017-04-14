@@ -85,10 +85,10 @@ sale: true}
  	}
 
 	function Scorz(map) {
-		this.map_ = map
-		this.div_ = null
+		this.map_ = map;
+		this.div_ = null;
 
-		this.setMap(map)
+		this.setMap(map);
 	}
 
 	Scorz.prototype.onAdd = function() {
@@ -101,7 +101,7 @@ sale: true}
 		this.div_ = div
 
 		var panes = this.getPanes();
-		panes.overlayLayer.appendChild(div);
+		panes.overlayMouseTarget.appendChild(div);
 		console.log('map overlay')
 	};
 
@@ -110,18 +110,19 @@ sale: true}
 		var div = this.div_
 		console.log("draw function")
 
-		var svg = d3.select("#map").append('svg');
+		var svg = d3.select(this.div_).append('svg');
 
 		var circle = svg.selectAll("d3.symbolCircle")
-		.attr("class", "graf")
+		// .attr("class", "graf")
 		// .attr()
-	    .data([32, 57, 293], function(d) { return d; });
+	    .data([[37.7727234013654, -122.410416664036], [-122.454598859175, 37.7727234013654]], function(d) { return d; })
+    // .data([32, 57, 293], function(d) { return d; })
 
-		circle.enter().append("circle")
-		    .attr("cy", 60)
-		    .attr("cx", function(d, i) { return i * 100 + 30; })
-		    .attr("r", function(d) { return Math.sqrt(d); })
-		    .style("fill", "red")
+		.enter().append("circle")
+		    .attr("cx", function (d) { console.log(d); return d[0]; })
+		    .attr("cy", function (d) { return d[1]; })
+		    .attr("r", 16)
+		    .attr("fill", "blue")
 		    // .update();
 	}
 
