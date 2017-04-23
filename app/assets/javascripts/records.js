@@ -96,19 +96,69 @@ sale: true}
 		div.style.borderStyle = 'none';
 		div.style.borderWidth = '0px';
 		div.style.position = 'absolute';
-		div.id = 'dots'
 
 		this.div_ = div
 
-		var panes = this.getPanes();
-		panes.overlayMouseTarget.appendChild(div);
-		console.log('map overlay')
+		var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
+        var svg = layer.append("svg");
+        var scores = svg.append("g").attr("class", "Scores");
+
+		// var panes = this.getPanes();
+		// panes.overlayMouseTarget.appendChild(div);
+		console.log('map overlay');
 	};
 
 	Scorz.prototype.draw = function() {
-		var projection = this.getProjection();
-		var div = this.div_
-		console.log("draw function")
+
+		var markerOverlay = this;
+        var overlayProjection = markerOverlay.getProjection();
+		// var projection = d3.geoMercator();//this.getProjection();
+		// var div = this.div_
+		console.log("draw function");
+
+		var googleMapProjection = function (coordinates) {
+            var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
+            var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
+            return [pixelCoordinates.x + 4000, pixelCoordinates.y + 4000];
+        }
+
+        path = d3.geoPath().projection(googleMapProjection)
+        		d3.select(this.svg)
+	        // scores.selectAll("path")
+	            .data({type: "FeatureCollection"}) //collection.features
+	            .attr("d", path.pointRadius(function (d) {
+	                return Math.sqrt((Math.exp(parseFloat(d.properties.mag)))); 
+	            }))
+	            .attr("class","myPathClass")
+			.enter().append("svg:path")
+	            .attr("d", path.pointRadius(function (d) {
+	                return Math.sqrt((Math.exp(parseFloat(d.properties.mag)))); 
+	            }))      
+
+	            .on("mouseover", function (d) {
+                                    var mousePosition = d3.svg.mouse(this);
+                                    var format = d3.time.format("%Y-%m-%d %HH:%MM:%SS");
+                                    $("#quake-pop-up").fadeOut(100, function () {
+                                        // Popup content
+                                        $("#quake-pop-up-title").html(format(new Date(parseInt(d.properties.time))));
+                                        $("#quake-pop-img").html(d.properties.mag);
+                                        $("#quake-pop-desc").html(d.properties.place);
+
+                                        $("#quake-pop-up").css({
+                                            "right": 0,
+                                            "top": 50
+                                        });
+                                        $("#quake-pop-up").fadeIn(100);
+                                    });
+                                }).
+                                on("mouseout", function () {
+                                    //$("#quake-pop-up").fadeOut(50);
+                                });
+                        
+
+
+
+
 
 		var svg = d3.select(this.div_).append('svg');
 
