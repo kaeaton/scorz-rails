@@ -100,8 +100,8 @@ sale: true}
 		this.div_ = div
 
 		var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
-        var svg = layer.append("svg");
-        var scores = svg.append("g").attr("class", "Scores");
+        // var svg = layer.append("svg");
+        // var scores = svg.append("g").attr("class", "Scores");
 
 		// var panes = this.getPanes();
 		// panes.overlayMouseTarget.appendChild(div);
@@ -109,6 +109,11 @@ sale: true}
 	};
 
 	Scorz.prototype.draw = function() {
+
+		var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
+        var svg = layer.append("svg");
+        var scores = svg.append("g").attr("class", "Scores");
+
 
 		var markerOverlay = this;
         var overlayProjection = markerOverlay.getProjection();
@@ -123,8 +128,8 @@ sale: true}
         }
 
         path = d3.geoPath().projection(googleMapProjection)
-        		d3.select(this.svg)
-	        // scores.selectAll("path")
+        		// d3.select(this.svg)
+	        scores.selectAll("path")
 	            .data({type: "FeatureCollection"}) //collection.features
 	            .attr("d", path.pointRadius(function (d) {
 	                return Math.sqrt((Math.exp(parseFloat(d.properties.mag)))); 
