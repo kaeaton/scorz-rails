@@ -150,6 +150,8 @@ sale: true}
 			            console.log(firstObject);
 			            var drugType = (firstObject.description);
 			            console.log(drugType);
+			            var lat = parseInt(firstObject.lat)
+			            var long = parseInt(firstObject.long)
 
 			            marker.append("circle")
 			            		.attr("r", 4)
@@ -159,7 +161,8 @@ sale: true}
 			            		.attr("cy", padding)
 
 			            function transform(d) {
-				            d = new google.maps.LatLng(d.lat, d.long);//d.lat, d.long);
+				            d = new google.maps.LatLng(d.value["lat"], d.value["long"]);
+				            console.log(d.lat + d.long);
 				            d = projection.fromLatLngToDivPixel(d);
 				            return d3.select(this)
 				                .style("left", (d.x - padding) + "px")
