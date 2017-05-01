@@ -71,183 +71,12 @@ popo_id: "170145982",
 sale: true}
 ]
 
-	var map = new google.maps.Map(document.getElementById('map'), {
+	var map = new google.maps.Map(d3.select("#map").node(), {
 		zoom: 13,
 		center: {lat: 37.75, lng: -122.445}
 	});
 
 	console.log('map');
-
-	var overlay = new google.maps.OverlayView();
-
-	overlay.onAdd = function() {
-
-		var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
-        var svg = layer.append("svg");
-        var scores = svg.append("g").attr("class", "Scores"); 
-
-        overlay.draw = function() {
-
-        	var markerOverlay = this;
-        	var overlayProjection = markerOverlay.getProjection();
-
-        	// Turn the overlay projection into a d3 projection
-            var googleMapProjection = function (testData) {
-                var googleCoordinates = new google.maps.LatLng(testData[0].lat, testData[0].long);
-                console.log(googleCoordinates);
-                var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
-                return [pixelCoordinates.x + 4000, pixelCoordinates.y + 4000];
-            }
-
-	        path = d3.geoPath().projection(googleMapProjection);
-
-	        scores.selectAll("path")
-	        	.data(d3.entries(testData))
-                .attr("d", path.pointRadius(8))  
-                .attr("class","myPathClass")
-				.enter().append("svg:path")
-                // .attr("d", path.pointRadius(9)) 
-
-        };
-	};
-
-	// overlay.setMap(map);
-
-
-	// Scorz.prototype.onAdd = function() {
-	// 	var div = document.createElement('div');
-	// 	div.style.borderStyle = 'none';
-	// 	div.style.borderWidth = '0px';
-	// 	div.style.position = 'absolute';
-
-	// 	this.div_ = div
-
-	// 	var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
- //        // var svg = layer.append("svg");
- //        // var scores = svg.append("g").attr("class", "Scores");
-
-	// 	// var panes = this.getPanes();
-	// 	// panes.overlayMouseTarget.appendChild(div);
-	// 	console.log('map overlay');
-	// };
-
-	// Scorz.prototype.draw = function() {
-
-	// 	var markerOverlay = this;
- //        var overlayProjection = markerOverlay.getProjection();
-	// 	// var projection = d3.geoMercator();//this.getProjection();
-	// 	// var div = this.div_
-	// 	console.log("draw function");
-
-	// 	var googleMapProjection = function (coordinates) {
- //            var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
- //            var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
- //            return [pixelCoordinates.x + 4000, pixelCoordinates.y + 4000];
- //        }
-
- //        path = d3.geoPath().projection(googleMapProjection)
- //        		// d3.select(this.svg)
-	//         scores.selectAll("path")
-	//             .data({type: "FeatureCollection"}) //collection.features
-	//             .attr("d", path.pointRadius())
-	//             .attr("class","myPathClass")
-	// 		.enter().append("svg:path")
-	//             .attr("d", path.pointRadius())      
-
-	//             .on("mouseover", function (d) {
- //                                    var mousePosition = d3.svg.mouse(this);
- //                                    var format = d3.time.format("%Y-%m-%d %HH:%MM:%SS");
- //                                    $("#quake-pop-up").fadeOut(100, function () {
- //                                        // Popup content
- //                                        $("#quake-pop-up-title").html(format(new Date(parseInt(d.properties.time))));
- //                                        $("#quake-pop-img").html(d.properties.mag);
- //                                        $("#quake-pop-desc").html(d.properties.place);
-
- //                                        $("#quake-pop-up").css({
- //                                            "right": 0,
- //                                            "top": 50
- //                                        });
- //                                        $("#quake-pop-up").fadeIn(100);
- //                                    });
- //                                }).
- //                                on("mouseout", function () {
- //                                    //$("#quake-pop-up").fadeOut(50);
- //                                });
-                        
-
-
-
-
-
-	// 	var svg = d3.select(this.div_).append('svg');
-
-	// 	var circle = svg.selectAll("d3.symbolCircle")
-	// 	// .attr("class", "graf")
-	// 	// .attr()
-	//     .data([[37.7727234013654, -122.410416664036], [-122.454598859175, 37.7727234013654]], function(d) { return d; })
- //    // .data([32, 57, 293], function(d) { return d; })
-
-	// 	.enter().append("circle")
-	// 	    .attr("cx", function (d) { console.log(d); return d[0]; })
-	// 	    .attr("cy", function (d) { return d[1]; })
-	// 	    .attr("r", 16)
-	// 	    .attr("fill", "blue")
-	// 	    // .update();
-	// }
-
-	// Scorz.prototype.draw = function() {
-	// 	var projection = this.getProjection();
-	// 	var div = this.div_;
-	// 	var padding = 12;
-	// 	console.log(testData);
-
-	// 	var firstObject = Object.keys(testData)[0];
-	// 	var drugType = testData[firstObject].description;
-	// 	// var coordinates = {["coordinates"]: [testData[firstObject].long, testData[firstObject]lat]};
-	// 	console.log(firstObject);
-	// 	console.log(drugType);
-	// 	// console.log(coordinates);
-
-	// 	var marker = d3.select('#dots')
-	// 						.selectAll('svg')
-	// 						.data([-122.410416664036, -122.454598859175], function(d){return d;})
-	// 						// .data(testData)
-	// 						.enter().append('svg:svg')
-	// 						.attr('class', 'marker')
-	// 						// .attr('x', 37.7727234013654)
-	// 						.attr('y')
- //                .attr("r", 4)
-
-
-	// 	console.log(marker);
-
-	// 	// var firstObject = Object.keys(testData)[0];
-	// 	// var drugType = testData[firstObject].description;
-	// 	// console.log(firstObject);
-	// 	// console.log(drugType);
-
-	// 	marker.enter().append("d3.symbolCircle")
- //                .attr("r", 4)
- //                .style("fill", "black")// d3.schemeSet3 // function(d) { return styling(drugType) })
- //                .style('stroke', 'black') 
- //                .style('stroke-width', 0.2)
- //                .attr("cx", padding)
- //                .attr("cy", padding)
- //        console.log("Theoretically dots appended.");
-
- //        function transform(d) {
- //            d = new google.maps.LatLng(d.value[1], d.value[0]);
- //            d = projection.fromLatLngToDivPixel(d);
- //            return d3.select(this)
- //                .style("left", (d.x - padding) + "px")
- //                .style("top", (d.y - padding) + "px");
- //        }
-	// google.maps.event.addDomListener(window, 'load', initMap);
-	
-
-    // overlay.setMap(map);
-
-
 
 	// Dropdown and checkbox functions
 
@@ -301,29 +130,28 @@ sale: true}
 
 				overlay.onAdd = function() {
 
-					var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
-			        // var svg = layer.append("svg");
-			        // var scores = svg.append("g").attr("class", "Scores"); 
-			        
+					var layer = d3.select(this.getPanes().overlayMouseTarget)
+								.append("div")
+								.attr("class", "scores");
+
 			        overlay.draw = function() {
 
-			            var projection = this.getProjection(),
-			                padding = 12;
+			        	var projection = this.getProjection(),
+			        		padding = 12;
 
-			            var marker = layer.selectAll("svg")
-			                              .data(d3.entries(ajaxResults))
-			                              // .each(transform) // update existing markers
-			                              .enter().append("svg:svg")
-			                              // .each(transform)
-			                              .attr("class", "marker")
-			                              // .each(transform)
+			        	var marker = layer.selectAll("svg")
+                              .data(d3.entries(ajaxResults))
+                              .each(transform) // update existing markers
+                              .enter().append("svg")
+                              .each(transform)
+                              .attr("class", "marker");
 
-
-			            var firstObject = Object.keys(ajaxResults)[0];
-			            var drugType = ajaxResults[firstObject][2]
+			            var firstObject = Object(ajaxResults[0]);
+			            console.log(firstObject);
+			            var drugType = (firstObject.description);
 			            console.log(drugType);
 
-			            marker.append(d3.symbolCircle)
+			            marker.append("circle")
 			            		.attr("r", 4)
 			            		.style("fill", function(d) {return styling(drugType)})
 			            		.style({"stroke": "black", "stroke-width": 0.2})
@@ -331,14 +159,16 @@ sale: true}
 			            		.attr("cy", padding)
 
 			            function transform(d) {
-				            d = new google.maps.LatLng(d.value[1], d.value[0]);
+				            d = new google.maps.LatLng(d.lat, d.long);//d.lat, d.long);
 				            d = projection.fromLatLngToDivPixel(d);
 				            return d3.select(this)
 				                .style("left", (d.x - padding) + "px")
 				                .style("top", (d.y - padding) + "px");
-				            }
-				        }
+			            }
 
+			        };
+				};	
+            overlay.setMap(map);
 			}
 		})
 	})
