@@ -44,33 +44,6 @@ circle.enter().append("circle")
 
 // circle.exit().remove();
 
-	// Bring forth the map
-
-	var testData = [
-{category: "PROSTITUTION",
-datetime: "2017-01-02T00:00:00.000Z",
-day_of_week: "Monday",
-description: "PIMPING",
-district: "SOUTHERN",
-full_description: "PIMPING",
-id: 29,
-lat: "37.7727234013654",
-long: "-122.410416664036",
-popo_id: "170002906",
-sale: true},
-{category: "PROSTITUTION",
-datetime: "2017-02-20T00:00:00.000Z",
-day_of_week: "Monday",
-description: "PIMPING",
-district: "TARAVAL",
-full_description: "PIMPING",
-id: 249,
-lat: "37.7236442721138",
-long: "-122.454598859175",
-popo_id: "170145982",
-sale: true}
-]
-
 	var map = new google.maps.Map(d3.select("#map").node(), {
 		zoom: 13,
 		center: {lat: 37.75, lng: -122.445}
@@ -126,6 +99,7 @@ sale: true}
 				console.log(ajaxResults);
 				console.log(ajaxResults[0].description)
 
+
 				var overlay = new google.maps.OverlayView();
 
 				overlay.onAdd = function() {
@@ -134,24 +108,42 @@ sale: true}
 								.append("div")
 								.attr("class", "scores");
 
+			      	overlay.onRemove = function() {
+			        	d3.select(div).data(overlay).exit()
+						.remove();
+			        };
+
+
 			        overlay.draw = function() {
 
 			        	var projection = this.getProjection(),
 			        		padding = 12;
 
-			        	var marker = layer.selectAll("svg")
-                              .data(d3.entries(ajaxResults))
-                              .each(transform) // update existing markers
-                              .enter().append("svg")
-                              .each(transform)
-                              .attr("class", "marker");
+						d3.selectAll("svg").data(d3.entries(ajaxResults)).exit().remove();
 
+			            d3.selectAll("svg").attr("svg", "update");
+
+			        	// var marker = layer.selectAll("svg")
+			        	// 	.data(d3.entries(ajaxResults))
+            //                 .exit().remove()
+
+                        d3.select("marker").data(d3.entries(ajaxResults))
+                            .exit().remove()
+
+                        var marker = layer.selectAll("svg")
+                        	.data(d3.entries(ajaxResults))
+                            .each(transform) // update existing markers
+                        	.enter().append("svg")
+                            .each(transform)
+                            .attr("class", "marker");
+
+                        // Determines the drug type for styling
 			            var firstObject = Object(ajaxResults[0]);
 			            console.log(firstObject);
 			            var drugType = (firstObject.description);
 			            console.log(drugType);
-			            var lat = parseInt(firstObject.lat)
-			            var long = parseInt(firstObject.long)
+
+			            marker.attr("circle", "update");
 
 			            marker.append("circle")
 			            		.attr("r", 4)
@@ -162,7 +154,6 @@ sale: true}
 
 			            function transform(d) {
 				            d = new google.maps.LatLng(d.value["lat"], d.value["long"]);
-				            console.log(d.lat + d.long);
 				            d = projection.fromLatLngToDivPixel(d);
 				            return d3.select(this)
 				                .style("left", (d.x - padding) + "px")
@@ -170,8 +161,14 @@ sale: true}
 			            }
 
 			        };
+
+
+
+
 				};	
+
             overlay.setMap(map);
+
 			}
 		})
 	})
