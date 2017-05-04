@@ -33,7 +33,7 @@ gem 'httparty'
 gem 'soda-ruby', :require => 'soda'
 gem 'hashie'
 
-gem "d3-rails"
+# gem "d3-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -41,8 +41,12 @@ gem "d3-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-
   gem 'pry'
+  gem 'capistrano',            require: false
+  gem 'capistrano-rvm',        require: false
+  gem 'capistrano-rails',      require: false
+  gem 'capistrano-bundler',    require: false
+  gem 'capistrano-passenger',  require: false
 end
 
 group :development do

@@ -4,11 +4,11 @@ $(document).ready(function(){
 
 	function styling(drugType){
 	    switch(drugType){
-	        case "PIMPING":
+	        case "MARIJUANA":
 		        console.log("switch")
 		        return "rgba(74, 145, 48, 0.3)";
 		        break;
-	        case "COCAINE":
+	        case "PIMPING":
 		        return "rgba(255, 0, 0, 0.3)";
 		        break;
 	        case "METH-AMPHETAMINE":
@@ -27,95 +27,29 @@ $(document).ready(function(){
 		        return "rgba(72, 0, 32, 0.3)";
 	    }
 	}
+var svg = d3.select("#test").append('svg');
 
-	// Bring forth the map
+	var circle = svg.selectAll("d3.symbolCircle")
+	.attr("class", "graf")
+	// .attr()
+    .data([32, 57, 293], function(d) { return d; });
 
-	var testData = [
-{category: "PROSTITUTION",
-datetime: "2017-01-02T00:00:00.000Z",
-day_of_week: "Monday",
-description: "PIMPING",
-district: "SOUTHERN",
-full_description: "PIMPING",
-id: 29,
-lat: "37.7727234013654",
-long: "-122.410416664036",
-popo_id: "170002906",
-sale: true},
-{category: "PROSTITUTION",
-datetime: "2017-02-20T00:00:00.000Z",
-day_of_week: "Monday",
-description: "PIMPING",
-district: "TARAVAL",
-full_description: "PIMPING",
-id: 249,
-lat: "37.7236442721138",
-long: "-122.454598859175",
-popo_id: "170145982",
-sale: true}
-]
 
-	var overlay;
-	Scorz.prototype = new google.maps.OverlayView();
+circle.enter().append("circle")
+    .attr("cy", 60)
+    .attr("cx", function(d, i) { return i * 100 + 30; })
+    .attr("r", function(d) { return Math.sqrt(d); })
+    .style("fill", "red")
+    // .update();
 
-	function initMap() {
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 13,
-			center: {lat: 37.75, lng: -122.445}
-		});
+// circle.exit().remove();
 
-		overlay = new Scorz(map);
- 		console.log('map');
- 	}
+	var map = new google.maps.Map(d3.select("#map").node(), {
+		zoom: 13,
+		center: {lat: 37.75, lng: -122.445}
+	});
 
-	function Scorz(map) {
-		this.map_ = map
-		this.div_ = null
-
-		this.setMap(map)
-	}
-
-	Scorz.prototype.onAdd = function() {
-		var div = document.createElement('div');
-		div.style.borderStyle = 'none';
-		div.style.borderWidth = '0px';
-		div.style.position = 'absolute';
-
-		this.div_ = div
-
-		var panes = this.getPanes();
-		panes.overlayLayer.appendChild(div);
-		console.log('map overlay')
-	};
-
-	Scorz.prototype.draw = function() {
-		var projection = this.getProjection();
-		var div = this.div_;
-		var padding = 12;
-		console.log(testData)
-		var marker = d3.select('div')
-							.data(testData)
-							// .each(transform)
-							.enter().append('svg:svg')
-							// .each(transform)
-							.attr('class', 'marker')
-							// .each(transform)
-
-		var firstObject = Object.keys(testData)[0];
-		var drugType = testData[firstObject].description;
-		console.log(firstObject);
-		console.log(drugType);
-
-		marker.d3.append("svg:circle")
-                .attr("r", 4)
-                .style("fill", function(d) { return styling(drugType) })
-                .style({'stroke': 'black', 'stroke-width': 0.2})
-                .attr("cx", padding)
-                .attr("cy", padding)
-	}
-
-	google.maps.event.addDomListener(window, 'load', initMap);
-
+	console.log('map');
 
 	// Dropdown and checkbox functions
 
@@ -165,115 +99,78 @@ sale: true}
 				console.log(ajaxResults);
 				console.log(ajaxResults[0].description)
 
-				// var overlay;
-				// Scorz.prototype = new google.maps.OverlayView();
 
-				// function initMap() {
-				// 	// var map = new google.maps.Map(document.getElementById('map'), {
-				// 	// 	zoom: 13,
-				// 	// 	center: {lat: 37.75, lng: -122.445}
-				// 	// });
+				var overlay = new google.maps.OverlayView();
 
-				// 	// overlay = new Scorz(map);
-				// 	overlay = new Scorz(map);
-			 // 		console.log('map');
-			 // 	}
+				overlay.onAdd = function() {
 
-				// function Scorz(map) {
-				// 	this.map_ = map
-				// 	this.div_ = null
+					var layer = d3.select(this.getPanes().overlayMouseTarget)
+								.append("div")
+								.attr("class", "scores");
 
-				// 	this.setMap(map)
-				// }
-
-				// Scorz.prototype.onAdd = function() {
-				// 	// var div = document.createElement('div');
-				// 	// div.style.borderStyle = 'none';
-				// 	// div.style.borderWidth = '0px';
-				// 	// div.style.position = 'absolute';
-
-				// 	var layer = d3.select(this.getPanes().overlayLayer)
-			 //                        .append("div")
-			 //                        .attr("class", "scores");
-
-			 //        overlay.draw = function() {
-			 //            var projection = this.getProjection(),
-			 //                padding = 12;
-
-			 //            var marker = layer.selectAll("svg")
-			 //                              .data(d3.entries(ajaxResults))
-			 //                              .each(transform) // update existing markers
-			 //                              .enter().append("svg:svg")
-			 //                              .each(transform)
-			 //                              .attr("class", "marker")
-			 //                              .each(transform)
+			      	overlay.onRemove = function() {
+			        	d3.select(div).data(overlay).exit()
+						.remove();
+			        };
 
 
-			 //            var firstObject = Object.keys(ajaxResults)[0];
-			 //            var drugType = ajaxResults[firstObject][2]
-			 //            console.log(drugType);
+			        overlay.draw = function() {
 
-			 //            marker.append("svg:circle")
-			 //            		.attr("r", 4)
-			 //            		.style("fill", function(d) {return styling(drugType)})
-			 //            		.style({"stroke": "black", "stroke-width": 0.2})
-			 //            		.attr("cx", padding)
-			 //            		.attr("cy", padding)
+			        	var projection = this.getProjection(),
+			        		padding = 12;
 
-			 //            function transform(d) {
-				//             d = new google.maps.LatLng(d.value[1], d.value[0]);
-				//             d = projection.fromLatLngToDivPixel(d);
-				//             return d3.select(this)
-				//                 .style("left", (d.x - padding) + "px")
-				//                 .style("top", (d.y - padding) + "px");
-				//             }
-				//         }
+						d3.selectAll("svg").data(d3.entries(ajaxResults)).exit().remove();
 
-				// 	this.div_ = div
+			            d3.selectAll("svg").attr("svg", "update");
 
-				// 	var panes = this.getPanes();
-				// 	panes.overlayLayer.appendChild(div);
-				// 	console.log('map overlay')
-				// };
+			        	// var marker = layer.selectAll("svg")
+			        	// 	.data(d3.entries(ajaxResults))
+            //                 .exit().remove()
 
-				// google.maps.event.addDomListener(window, 'load', initMap);
+                        d3.select("marker").data(d3.entries(ajaxResults))
+                            .exit().remove()
 
+                        var marker = layer.selectAll("svg")
+                        	.data(d3.entries(ajaxResults))
+                            .each(transform) // update existing markers
+                        	.enter().append("svg")
+                            .each(transform)
+                            .attr("class", "marker");
 
-				// var layer = d3.select(this.getPanes().overlayLayer)
-				// 			.append('div')
-				// 			.attr('class', 'scores');
+                        // Determines the drug type for styling
+			            var firstObject = Object(ajaxResults[0]);
+			            console.log(firstObject);
+			            var drugType = (firstObject.description);
+			            console.log(drugType);
 
-				// Draw each marker as a separate SVG element
+			            marker.attr("circle", "update");
 
-				// var overlay;
-				// Scorz.prototype = new google.maps.OverlayView();
+			            marker.append("circle")
+			            		.attr("r", 4)
+			            		.style("fill", function(d) {return styling(drugType)})
+			            		.style({"stroke": "black", "stroke-width": 0.2})
+			            		.attr("cx", padding)
+			            		.attr("cy", padding)
 
-				// function initMap() {
+			            function transform(d) {
+				            d = new google.maps.LatLng(d.value["lat"], d.value["long"]);
+				            d = projection.fromLatLngToDivPixel(d);
+				            return d3.select(this)
+				                .style("left", (d.x - padding) + "px")
+				                .style("top", (d.y - padding) + "px");
+			            }
 
-				// }
-
-
-				// overlay.draw = function(){
-				// 	var projection = this.getProjection(),
-				// 		padding = 12;
-
-				// 	var marker = layer.selectAll('svg')
-				// 						.data(d3.entries(incoming))
-				// 						.each(transform) //update existing markers
-				// 						.enter().append('svg:svg')
-				// 						.each(transform)
-				// 						.attr('class', 'marker')
-				// 						.each(transform)
-
-				// 	var firstObject = Object.keys(incoming)[0];
-				// 	console.log(firstObject)
-				// }
+			        };
 
 
-				// google.maps.event.addDomListener(window, 'load', initMap);
 
+
+				};	
+
+            overlay.setMap(map);
 
 			}
 		})
 	})
 })
+

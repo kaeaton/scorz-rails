@@ -45,6 +45,7 @@ class RecordsController < ApplicationController
       @returned_records = DataHelper.dealers(@incoming_drug_request)
     else
       @returned_records = Record.where(description: @incoming_drug_request)
+      # @returned_records = DataHelper.general(@incoming_drug_request)
     end
 
     respond_to do |format|

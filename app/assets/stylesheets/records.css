@@ -32,6 +32,14 @@ p {
   padding-top: 10px;
 }
 
+#test {
+	height: 50px;
+	float: left;
+}
+
+/*.graf {
+	height: 50px;
+}*/
 
 #drugs {
   float: right;
@@ -52,7 +60,22 @@ p {
 	visibility: hidden;
 }
 
+.scores, .scores svg {
+  position: absolute;
+}
 
+.scores circle {
+  fill: green;
+  stroke: black;
+  stroke-width: 1.5px;
+  opacity: 50%;
+}
+
+.scores rect {
+  fill: red;
+  stroke: black;
+  stroke-width: 1.5px;
+}
 
 
 
