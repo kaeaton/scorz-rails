@@ -81,6 +81,6 @@ development:
 #
 production:
   <<: *default
-  database: scorz # Scorz-Rails_production
+  database: Scorz-Rails_production # Scorz-Rails_production
   username: scorz # Scorz-Rails
   password: <%= ENV['SCORZ_DATABASE_PASSWORD'] %>
