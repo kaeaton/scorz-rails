@@ -35,6 +35,8 @@ gem 'hashie'
 
 # gem "d3-rails"
 
+gem 'listen', '~> 3.0.5'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
