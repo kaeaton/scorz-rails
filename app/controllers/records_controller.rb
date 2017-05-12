@@ -36,6 +36,7 @@ class RecordsController < ApplicationController
   end
 
   def show
+    @drug = params[:drug]
     @incoming_drug_request = params[:drug].to_s
 
     if params[:hookers] == '1'
