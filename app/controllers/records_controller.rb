@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
   def index
     @drug_options = [['Meth', 'METH-AMPHETAMINE'], ['Heroin', 'HEROIN'], ['Crack', 'CRACK'], ['Cocaine', 'COCAINE'], ['Marijuana', 'MARIJUANA'], ['Opium', 'OPIATES'], ['Hallucinogens', 'HALLUCINOGENIC'], ['Prostitutes', 'LOITERING'], ['Pimps', 'PIMPING'], ['Brothels', 'HOUSE']]
     @pros_options = [['Prostitutes', 'LOITERING'], ['Pimps', 'PIMPING'],  ['Indecent Exposure', 'INDECENT'], ['Lewd Behavior', 'LEWD']]
-    @drug = Record.all
+    @drug = params[:drug]
   end
 
   def new
