@@ -99,7 +99,6 @@ circle.enter().append("circle")
 				console.log(ajaxResults);
 				console.log(ajaxResults[0].description)
 
-
 				var overlay = new google.maps.OverlayView();
 
 				overlay.onAdd = function() {
@@ -108,24 +107,12 @@ circle.enter().append("circle")
 								.append("div")
 								.attr("class", "scores");
 
-			      	overlay.onRemove = function() {
-			        	d3.select(div).data(overlay).exit()
-						.remove();
-			        };
-
-
 			        overlay.draw = function() {
 
 			        	var projection = this.getProjection(),
 			        		padding = 12;
 
-						d3.selectAll("svg").data(d3.entries(ajaxResults)).exit().remove();
-
-			            d3.selectAll("svg").attr("svg", "update");
-
-			        	// var marker = layer.selectAll("svg")
-			        	// 	.data(d3.entries(ajaxResults))
-            //                 .exit().remove()
+						d3.selectAll("svg").remove();
 
                         d3.select("marker").data(d3.entries(ajaxResults))
                             .exit().remove()
@@ -161,10 +148,6 @@ circle.enter().append("circle")
 			            }
 
 			        };
-
-
-
-
 				};	
 
             overlay.setMap(map);
