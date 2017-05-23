@@ -7,7 +7,7 @@ module RecordsHelper
 
   # SFGov Data - Currently set for 2017 
   def self.get_records
-    client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL"})
+    client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL", :ignore_ssl => 'true'})
     client.get("cuks-n6tp", {"$where" => "category = 'PROSTITUTION' AND date > '2016-12-31T00:00:00.000' or category = 'DRUG/NARCOTIC' AND date > '2016-12-31T00:00:00.000'"})
   end
   # https://data.sfgov.org/resource/cuks-n6tp.json
