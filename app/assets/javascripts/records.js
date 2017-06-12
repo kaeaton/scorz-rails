@@ -27,25 +27,12 @@ $(document).ready(function(){
 		        return "rgba(72, 0, 32, 0.3)";
 	    }
 	}
-var svg = d3.select("#test").append('svg');
 
-	var circle = svg.selectAll("d3.symbolCircle")
-	.attr("class", "graf")
-	// .attr()
-    .data([32, 57, 293], function(d) { return d; });
+	
 
-
-circle.enter().append("circle")
-    .attr("cy", 60)
-    .attr("cx", function(d, i) { return i * 100 + 30; })
-    .attr("r", function(d) { return Math.sqrt(d); })
-    .style("fill", "red")
-    // .update();
-
-// circle.exit().remove();
 
 	var map = new google.maps.Map(d3.select("#map").node(), {
-		zoom: 13,
+		zoom: 12,
 		center: {lat: 37.75, lng: -122.445}
 	});
 
@@ -99,6 +86,7 @@ circle.enter().append("circle")
 				console.log(ajaxResults);
 				console.log(ajaxResults[0].description)
 
+				var color = d3.scale.category10()
 				var overlay = new google.maps.OverlayView();
 
 				overlay.onAdd = function() {
@@ -114,9 +102,6 @@ circle.enter().append("circle")
 
 						d3.selectAll("svg").remove();
 
-                        d3.select("marker").data(d3.entries(ajaxResults))
-                            .exit().remove()
-
                         var marker = layer.selectAll("svg")
                         	.data(d3.entries(ajaxResults))
                             .each(transform) // update existing markers
@@ -129,10 +114,33 @@ circle.enter().append("circle")
 			            console.log(firstObject);
 			            var drugType = (firstObject.description);
 			            console.log(drugType);
+			            var drugCategory = (firstObject.category);
+			            console.log(drugCategory);
 
-			            marker.attr("circle", "update");
+			            // svg = d3.select("marker")
 
-			            marker.append("circle")
+			            // var star1 = new d3Star()
+			            // // 	// .x(12)
+			            // // 	// .y(12)
+			            // 	.size(12)
+			            // 	.value(0.0)
+			            // 	.borderColor("black")
+			            // 	.borderWidth(0.2)
+
+			            // var star2 = marker.append("star1")
+
+						var h = 300,
+					        w = 800,
+					        l = 50,
+					        svgProto = d3.select("svg"); //.attr("height", h).attr("width", w),
+					        // svg = d3.select("#test").append("svg").attr("height", h).attr("width", w),
+					        var svg = svgProto.append("g");
+					        star1 = new d3Star();
+					    star1.x(100).y(100).size(l).value(1.0).starColor("#67AED3").borderWidth(0);
+					    // d3.select("#test").append(svg);
+					    // star2 = svg.call(star1);
+
+			            marker.append(drugCategory == "PROSTITUTION" ? symbol.type("cross") : "circle") //dot)
 			            		.attr("r", 4)
 			            		.style("fill", function(d) {return styling(drugType)})
 			            		.style({"stroke": "black", "stroke-width": 0.2})
@@ -146,7 +154,6 @@ circle.enter().append("circle")
 				                .style("left", (d.x - padding) + "px")
 				                .style("top", (d.y - padding) + "px");
 			            }
-
 			        };
 				};	
 
