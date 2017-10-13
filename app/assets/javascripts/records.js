@@ -140,7 +140,11 @@ $(document).ready(function(){
 					    // d3.select("#test").append(svg);
 					    // star2 = svg.call(star1);
 
-			            marker.append(drugCategory == "PROSTITUTION" ? symbol.type("cross") : "circle") //dot)
+					    marker.append("circle")
+			            // marker.append(drugCategory == "PROSTITUTION" ? "cross" : "diamond") //dot)
+			            // marker.append(symbol(drugCategory === "PROSTITUTION" ? "cross" : "diamond"))
+			            // .symbol(drugCategory == "PROSTITUTION" ? "cross" : "diamond") )//dot)
+			            		// symbol.type("diamond")
 			            		.attr("r", 4)
 			            		.style("fill", function(d) {return styling(drugType)})
 			            		.style({"stroke": "black", "stroke-width": 0.2})
