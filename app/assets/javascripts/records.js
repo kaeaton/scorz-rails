@@ -70,7 +70,7 @@ $(document).ready(function(){
 		var hookersNBlow = $("#hookers").serialize();
 		var theGrowers = $("#growers").serialize();
 
-		marijuanaIsBadMkay(theChosenOne);
+		// marijuanaIsBadMkay(theChosenOne);
 		areTheHookersOut(hookersNBlow);
 
 
