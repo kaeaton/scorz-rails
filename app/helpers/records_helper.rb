@@ -6,13 +6,15 @@ module RecordsHelper
   attr_reader :hits
 
   # SFGov Data - Currently set for 2017 
-  def self.get_records
-    client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL", :ignore_ssl => 'true'})
-    client.get("cuks-n6tp", {"$where" => "category = 'PROSTITUTION' AND date > '2015-12-31T00:00:00.000' or category = 'DRUG/NARCOTIC' AND date > '2015-12-31T00:00:00.000'"})
-  end
+  # def self.get_records
+  #   client = SODA::Client.new({:domain => "data.sfgov.org", :app_token => "YSf0ezIV7JKqotNR8TEexPqaL", :ignore_ssl => 'true'})
+  #   client.get("cuks-n6tp", {"$where" => "category = 'PROSTITUTION' AND date > '2015-12-31T00:00:00.000' or category = 'DRUG/NARCOTIC' AND date > '2015-12-31T00:00:00.000'"})
+  # end
   # https://data.sfgov.org/resource/cuks-n6tp.json
   # "$limit" => 5, 
-
+  def self.get_records
+    HTTParty.get ("https://data.sfgov.org/resource/wg3w-h783.json")
+  end
   # Crimespotting API, stopped updating 2015
   # def self.get_records
   #   HTTParty.get ("http://sanfrancisco.crimespotting.org/crime-data?format=json&count=1000&type=Pr,Na&dstart=2013-01-01")
